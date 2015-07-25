@@ -127,6 +127,7 @@ Bokeh.HBox           = require("./widget/hbox")
 Bokeh.VBox           = require("./widget/vbox")
 Bokeh.TextInput      = require("./widget/text_input")
 #Bokeh.CrossFilter    = require("./widget/crossfilter")
+require("./widget/jupyter.coffee")
 
 # Add the jquery plugin
 require("./api/plugin")

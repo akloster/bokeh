@@ -310,3 +310,22 @@ def markers():
 
 _color_fields = set(["color", "fill_color", "line_color"])
 _alpha_fields = set(["alpha", "fill_alpha", "line_alpha"])
+
+
+# Try to load IPython/Jupyter Widget
+class _FakeWidget(object):
+    """ Is used in place of the JupyterAnimationWidget when IPython/Jupyter
+        is not available. Always raises an Exception when instanciated. """
+    def __init__(self):
+        raise NotImplementedError("JupyterAnimationWidget must be instantiated "                                + "in an IPython/Jupyter Notebook Kernel.")
+
+try:
+    import IPython
+    ipython = IPython.get_ipython()
+    if (ipython is None) or (not hasattr(ipython, "kernel")):
+        JupyterAnimationWidget = _FakeWidget
+    else:
+        from .jupyter import JupyterAnimationWidget
+
+except ImportError:
+    JupyterAnimationWidget = _FakeWidget
