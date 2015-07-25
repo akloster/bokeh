@@ -155,9 +155,9 @@ class Resources(object):
             logger.warning("root_url should end with a /, adding one")
             root_url = root_url + "/"
         self._root_url = root_url
-        if mode not in ['inline', 'cdn', 'server', 'server-dev', 'relative', 'relative-dev', 'absolute', 'absolute-dev']:
+        if mode not in ['inline', 'inline-dev', 'cdn', 'server', 'server-dev', 'relative', 'relative-dev', 'absolute', 'absolute-dev']:
             raise ValueError("wrong value for 'mode' parameter, expected "
-                             "'inline', 'cdn', 'server(-dev)', 'relative(-dev)' or 'absolute(-dev)', got %r" % self.mode)
+                             "'inline', 'inline-dev', 'cdn', 'server(-dev)', 'relative(-dev)' or 'absolute(-dev)', got %r" % self.mode)
 
         if self.root_dir and not mode.startswith("relative"):
             raise ValueError("setting 'root_dir' makes sense only when 'mode' is set to 'relative'")
@@ -256,3 +256,4 @@ class Resources(object):
 CDN = Resources(mode="cdn")
 
 INLINE = Resources(mode="inline")
+INLINE_DEV = Resources(mode="inline-dev")
